@@ -95,4 +95,4 @@ If you find this repository helpful to your research, please consider citing the
 ``` -->
 
 ## Acknowledgement
-The code framework of this project is based on [MambaMOS](https://github.com/Terminal-K/MambaMOS/tree/main), thanks to their excellent work.
+The code framework of this project is based on  [pointcept](https://github.com/Pointcept/Pointcept) and [MambaMOS](https://github.com/Terminal-K/MambaMOS/tree/main), thanks to their excellent work.
