@@ -60,7 +60,7 @@ MAMBA_FORCE_BUILD=TRUE pip install .
 ```
 
 ## Dataset preparation
-Our Dataset Event_Rain27K is about to be released.
+Our dataset EventRain-27K is being organized and will be released soon.
 
 ## Run
 ### Training
