@@ -1,0 +1,20 @@
+# ninja log v5
+5	13107	1737561482643415569	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/random_ball_query/random_ball_query_cuda.o	b82562b6495653f5
+2	13124	1737561482659415788	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/attention/attention_cuda.o	f13e9849fb96e83c
+2	13132	1737561482671415953	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/ball_query/ball_query_cuda.o	22fbc2f1fcf7ee59
+4	13278	1737561482827418092	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/interpolation/interpolation_cuda.o	71435630c3c26834
+1	13290	1737561482827418092	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/aggregation/aggregation_cuda.o	d2f685d7effe
+7	13298	1737561482843418311	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/subtraction/subtraction_cuda.o	7e6c46f556e6f13a
+3	13306	1737561482831418146	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/grouping/grouping_cuda.o	70d92940fa12952c
+4	13313	1737561482839418256	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/knn_query/knn_query_cuda.o	62ab3497f2fb41f8
+6	13714	1737561483255423955	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/sampling/sampling_cuda.o	3983ecdb05bc5e55
+2	27640	1737561497203613282	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/attention/attention_cuda_kernel.o	322aee8ee980eb3
+6	28356	1737561497919622910	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/random_ball_query/random_ball_query_cuda_kernel.o	e8ce067d175d85be
+1	28440	1737561498003624039	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/aggregation/aggregation_cuda_kernel.o	1a80a524e55219c
+3	28470	1737561498035624469	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/grouping/grouping_cuda_kernel.o	86357809c7ff34c5
+5	28589	1737561498155626081	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/knn_query/knn_query_cuda_kernel.o	f5d46a9d71bd2bd0
+4	28596	1737561498159626134	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/interpolation/interpolation_cuda_kernel.o	14717c364189fa4
+3	28614	1737561498163626188	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/ball_query/ball_query_cuda_kernel.o	3542487b8a888573
+7	28714	1737561498279627746	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/subtraction/subtraction_cuda_kernel.o	92591486b720be47
+6	28765	1737561498327628391	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/sampling/sampling_cuda_kernel.o	25a6097d21b0287f
+5	29373	1737561498875635749	/home/gzh/code/rain_test/libs/pointops/build/temp.linux-x86_64-cpython-39/src/pointops_api.o	b16bfc77b928e283
