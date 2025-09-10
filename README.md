@@ -6,9 +6,19 @@
 <h3 align="center">ICCV 2025</h3>
 
 <div align="center">
-<div>
-    <a href="https://arxiv.org/abs/2505.05307"><img src="http://img.shields.io/badge/paper-arXiv-B31B1B.svg"></a>
-  </div>
+  <!-- Paper badge -->
+  <a href="https://arxiv.org/abs/2505.05307">
+    <img src="https://img.shields.io/badge/paper-arXiv-B31B1B.svg" style="height:28px;">
+  </a>
+  <!-- Dataset badge -->
+  <a href="https://huggingface.co/datasets/Rshnn/EventRain-27K/blob/main/README.md">
+    <img src="https://img.shields.io/badge/dataset-EventRain--27K-blue?logo=huggingface" style="height:28px;">
+  </a>
+  <!-- License badge -->
+  <a href="https://opensource.org/licenses/MIT">
+  <img src="https://img.shields.io/badge/license-MIT-green.svg" style="height:28px;">
+  </a>
+
 </div>
 
 <p align="center">
@@ -23,9 +33,10 @@ PRE-Mamba
 
 ## Overview
 - [x] [Environment](#environment) 
-- [ ] [Dataset preparation](#dataset-preparation)
-- [ ] [Run](#run)
-- [Acknowledgement](#acknowledgement)
+- [x] [Dataset preparation](#dataset-preparation)
+- [x] [Run](#run)
+- [ ] [Citation](#citation)
+- [x] [Acknowledgement](#acknowledgement)
 
 ## Environment
 ```
@@ -60,7 +71,7 @@ MAMBA_FORCE_BUILD=TRUE pip install .
 ```
 
 ## Dataset preparation
-Our dataset EventRain-27K is being organized and will be released soon.
+Our dataset [EventRain-27K](https://huggingface.co/datasets/Rshnn/EventRain-27K) is now available on Hugging Face.
 
 ## Run
 ### Training
