@@ -34,7 +34,7 @@ scan_modulation = False
 
 # model settings
 model = dict(
-    type="DefaultSegmentorV2",
+    type="DefaultSegmentor",
     num_classes=num_classes,
     backbone_out_channels=16,
     backbone=dict(
