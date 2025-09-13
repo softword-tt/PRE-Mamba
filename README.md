@@ -27,7 +27,13 @@
 <b><p align="center" style="margin-top: -20px;">
 PRE-Mamba
 
+## Demo video
 
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=gwno_lHGzQU" target="_blank">
+    <img src="./assets/demo_cover.png" width="80%">
+  </a>
+</p>
 
 </b></p>
 
