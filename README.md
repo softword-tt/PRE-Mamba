@@ -103,13 +103,20 @@ export CUDA_VISIBLE_DEVICES=0
 bash scripts/test.sh -g 1 -d event_rain -c PRE_Mamba -n SYTHETIC -w model_best
 ```
 
-<!-- ## Citation
+## Citation
 
 If you find this repository helpful to your research, please consider citing the following:
 
+```bibtex
+@InProceedings{Ruan_2025_ICCV,
+    author    = {Ruan, Ciyu and Guo, Ruishan and Gong, Zihang and Xu, Jingao and Yang, Wenhan and Chen, Xinlei},
+    title     = {PRE-Mamba: A 4D State Space Model for Ultra-High-Frequent Event Camera Deraining},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2025},
+    pages     = {9169-9180}
+}
 ```
-
-``` -->
 
 ## Acknowledgement
 The code framework of this project is based on  [pointcept](https://github.com/Pointcept/Pointcept) and [MambaMOS](https://github.com/Terminal-K/MambaMOS/tree/main), thanks to their excellent work.
