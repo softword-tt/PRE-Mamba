@@ -41,7 +41,7 @@ PRE-Mamba
 - [x] [Environment](#environment) 
 - [x] [Dataset preparation](#dataset-preparation)
 - [x] [Run](#run)
-- [ ] [Citation](#citation)
+- [x] [Citation](#citation)
 - [x] [Acknowledgement](#acknowledgement)
 
 ## Environment
