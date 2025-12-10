@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 from .builder import LOSSES
-from pytorch3d.ops import knn_points, knn_gather
+# from pytorch3d.ops import knn_points, knn_gather
 import faiss
 import numpy as np
 
@@ -504,41 +504,41 @@ class ChamferDistanceWithPolarity(nn.Module):
 
         return chamfer_loss * self.loss_weight
 
-@LOSSES.register_module()
-class chamfer_loss_with_intensity(nn.Module):
-    def __init__(self, loss_weight=1.0, intensity_weight=0.5):
-        super(chamfer_loss_with_intensity, self).__init__()
-        self.loss_weight = loss_weight
-        self.intensity_weight = intensity_weight
+# @LOSSES.register_module()
+# class chamfer_loss_with_intensity(nn.Module):
+#     def __init__(self, loss_weight=1.0, intensity_weight=0.5):
+#         super(chamfer_loss_with_intensity, self).__init__()
+#         self.loss_weight = loss_weight
+#         self.intensity_weight = intensity_weight
 
-    def forward(self, adv_pc, ori_pc):
-        device = adv_pc.device
+#     def forward(self, adv_pc, ori_pc):
+#         device = adv_pc.device
 
-        adv_xyz = adv_pc[:, :3]
-        ori_xyz = ori_pc[:, :3]
+#         adv_xyz = adv_pc[:, :3]
+#         ori_xyz = ori_pc[:, :3]
 
-        adv_KNN = knn_points(adv_xyz.unsqueeze(0), ori_xyz.unsqueeze(0), K=1)
-        ori_KNN = knn_points(ori_xyz.unsqueeze(0), adv_xyz.unsqueeze(0), K=1)
+#         adv_KNN = knn_points(adv_xyz.unsqueeze(0), ori_xyz.unsqueeze(0), K=1)
+#         ori_KNN = knn_points(ori_xyz.unsqueeze(0), adv_xyz.unsqueeze(0), K=1)
 
-        min_dist_adv_to_ori = adv_KNN.dists.squeeze(0).min(dim=1)[0]
-        min_dist_ori_to_adv = ori_KNN.dists.squeeze(0).min(dim=1)[0]
-        chamfer_loss = torch.mean(min_dist_adv_to_ori) + torch.mean(min_dist_ori_to_adv)
+#         min_dist_adv_to_ori = adv_KNN.dists.squeeze(0).min(dim=1)[0]
+#         min_dist_ori_to_adv = ori_KNN.dists.squeeze(0).min(dim=1)[0]
+#         chamfer_loss = torch.mean(min_dist_adv_to_ori) + torch.mean(min_dist_ori_to_adv)
 
-        adv_intensity = adv_pc[:, 3]
-        ori_intensity = ori_pc[:, 3]
+#         adv_intensity = adv_pc[:, 3]
+#         ori_intensity = ori_pc[:, 3]
 
-        adv_indices = adv_KNN.idx.squeeze(0).squeeze(-1).to(device).long()
-        ori_indices = ori_KNN.idx.squeeze(0).squeeze(-1).to(device).long()
+#         adv_indices = adv_KNN.idx.squeeze(0).squeeze(-1).to(device).long()
+#         ori_indices = ori_KNN.idx.squeeze(0).squeeze(-1).to(device).long()
 
-        ori_intensity_aligned = ori_intensity[adv_indices]
-        adv_intensity_diff_1 = torch.mean((adv_intensity - ori_intensity_aligned) ** 2)
+#         ori_intensity_aligned = ori_intensity[adv_indices]
+#         adv_intensity_diff_1 = torch.mean((adv_intensity - ori_intensity_aligned) ** 2)
 
-        adv_intensity_aligned = adv_intensity[ori_indices]
-        adv_intensity_diff_2 = torch.mean((ori_intensity - adv_intensity_aligned) ** 2)
+#         adv_intensity_aligned = adv_intensity[ori_indices]
+#         adv_intensity_diff_2 = torch.mean((ori_intensity - adv_intensity_aligned) ** 2)
 
-        intensity_loss = (adv_intensity_diff_1 + adv_intensity_diff_2) / 2
-        total_loss = chamfer_loss * self.loss_weight + intensity_loss * self.intensity_weight
-        return total_loss
+#         intensity_loss = (adv_intensity_diff_1 + adv_intensity_diff_2) / 2
+#         total_loss = chamfer_loss * self.loss_weight + intensity_loss * self.intensity_weight
+#         return total_loss
 
 @LOSSES.register_module()
 class AsymmetricHausdorffDistance(nn.Module):
@@ -560,44 +560,44 @@ class AsymmetricHausdorffDistance(nn.Module):
         hausdorff_loss = min_dist_pred_to_target.max()  
         return hausdorff_loss * self.loss_weight
 
-@LOSSES.register_module()
-class CurvatureLoss(nn.Module):
-    def __init__(self, loss_weight=1.0):
-        super(CurvatureLoss, self).__init__()
-        self.loss_weight = loss_weight
+# @LOSSES.register_module()
+# class CurvatureLoss(nn.Module):
+#     def __init__(self, loss_weight=1.0):
+#         super(CurvatureLoss, self).__init__()
+#         self.loss_weight = loss_weight
 
-    def forward(self, adv_pc, ori_pc):
+#     def forward(self, adv_pc, ori_pc):
 
-        adv_pc = adv_pc[:, :3]  
-        ori_pc = ori_pc[:, :3] 
+#         adv_pc = adv_pc[:, :3]  
+#         ori_pc = ori_pc[:, :3] 
 
-        kappa_adv, _ = self._get_kappa_adv(adv_pc, ori_pc, k=2)
-
-
-        kappa_ori, _ = self._get_kappa_adv(ori_pc, ori_pc, k=2)
-
-        knn_result = knn_points(adv_pc.unsqueeze(0), ori_pc.unsqueeze(0), K=1)
-        _, indices, _ = knn_result.dists, knn_result.idx, knn_result.knn
-        kappa_ori_matched = kappa_ori[indices.squeeze(0).squeeze(1)]  # (N,)
-
-        curv_loss = ((kappa_adv - kappa_ori_matched) ** 2).mean()
-
-        return curv_loss * self.loss_weight
-
-    def _get_kappa_adv(self, adv_pc, ori_pc, k=10):
+#         kappa_adv, _ = self._get_kappa_adv(adv_pc, ori_pc, k=2)
 
 
-        adv_pc = adv_pc.unsqueeze(0) 
-        ori_pc = ori_pc.unsqueeze(0)  
+#         kappa_ori, _ = self._get_kappa_adv(ori_pc, ori_pc, k=2)
 
-        inter_KNN = knn_points(adv_pc, adv_pc, K=k)
-        nn_pts = knn_gather(adv_pc, inter_KNN.idx).squeeze(0)[:, 1:, :]  # (N, k, 3)
+#         knn_result = knn_points(adv_pc.unsqueeze(0), ori_pc.unsqueeze(0), K=1)
+#         _, indices, _ = knn_result.dists, knn_result.idx, knn_result.knn
+#         kappa_ori_matched = kappa_ori[indices.squeeze(0).squeeze(1)]  # (N,)
 
-        vectors = nn_pts - adv_pc.squeeze(0).unsqueeze(1)  # (N, k, 3)
-        cov_matrices = torch.matmul(vectors.transpose(1, 2), vectors) / k  # (N, 3, 3)
-        eigvals, _ = torch.linalg.eigh(cov_matrices)  # (N, 3)
+#         curv_loss = ((kappa_adv - kappa_ori_matched) ** 2).mean()
 
-        kappa_adv = eigvals[:, 0] / (eigvals.sum(dim=1) + 1e-6)  # (N,)
+#         return curv_loss * self.loss_weight
 
-        return kappa_adv, None  
+#     def _get_kappa_adv(self, adv_pc, ori_pc, k=10):
+
+
+#         adv_pc = adv_pc.unsqueeze(0) 
+#         ori_pc = ori_pc.unsqueeze(0)  
+
+#         inter_KNN = knn_points(adv_pc, adv_pc, K=k)
+#         nn_pts = knn_gather(adv_pc, inter_KNN.idx).squeeze(0)[:, 1:, :]  # (N, k, 3)
+
+#         vectors = nn_pts - adv_pc.squeeze(0).unsqueeze(1)  # (N, k, 3)
+#         cov_matrices = torch.matmul(vectors.transpose(1, 2), vectors) / k  # (N, 3, 3)
+#         eigvals, _ = torch.linalg.eigh(cov_matrices)  # (N, 3)
+
+#         kappa_adv = eigvals[:, 0] / (eigvals.sum(dim=1) + 1e-6)  # (N,)
+
+#         return kappa_adv, None  
 
